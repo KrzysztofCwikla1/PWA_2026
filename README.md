@@ -37,8 +37,8 @@ Aplikacja pozwala użytkownikowi:
 
 | Imię       | Nazwisko | Nr grupy dziekańskiej | Nr albumu |
 | ---------- | -------- | --------------------- | --------- |
-| Krzysztof  | Ćwikła   | ZIISN1 - 3611IO       | XXXXXX    |
-| Bartłomiej | Kapusta  | ZIISN1 - 3611IO       | XXXXXX    |
+| Krzysztof  | Ćwikła   | ZIISN1 - 3611IO       | 233728    |
+| Bartłomiej | Kapusta  | ZIISN1 - 3611IO       | 234091    |
 | Tomasz     | Wojdyła  | ZIISN1 - 3611IO       | 234216    |
 
 ---
