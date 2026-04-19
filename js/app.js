@@ -83,9 +83,9 @@ reportText.addEventListener('input', (event) => {
     enableShare();
 });
 
-// =====================
-// GEOLOCATION
-// =====================
+//geolokalizacja
+const locationModal = new bootstrap.Modal(document.getElementById('locationModal'));
+
 function getLocation() {
     if (!navigator.geolocation) {
         locationStatus.textContent = 'Geolokacja nie jest wspierana';
@@ -96,25 +96,41 @@ function getLocation() {
 
     navigator.geolocation.getCurrentPosition(
         (position) => {
+            locationModal.hide();
+            
             const lat = position.coords.latitude;
             const lon = position.coords.longitude;
 
             console.log('GPS OK:', lat, lon);
-
             currentCoords = { lat, lon };
-
             locationStatus.textContent = `Lat: ${lat.toFixed(5)}, Lon: ${lon.toFixed(5)}`;
-
             showMap(lat, lon);
             enableShare();
         },
         (error) => {
             console.error('GPS ERROR:', error);
-            locationStatus.textContent = 'Błąd GPS: ' + error.message;
+            switch(error.code) {
+                case error.PERMISSION_DENIED:
+                    locationStatus.textContent = "Błąd: Odmówiono dostępu do lokalizacji.";
+                    locationModal.show(); 
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    locationStatus.textContent = "Błąd: Lokalizacja niedostępna (wyłączony GPS?).";
+                    locationModal.show(); 
+                    break;
+                case error.TIMEOUT:
+                    locationStatus.textContent = "Błąd: Przekroczono czas oczekiwania.";
+                    break;
+                default:
+                    locationStatus.textContent = "Wystąpił nieznany błąd GPS.";
+                    break;
+            }
         },
         {
             enableHighAccuracy: true,
-        },
+            timeout: 10000,
+            maximumAge: 0
+        }
     );
 }
 
