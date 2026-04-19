@@ -8,6 +8,10 @@ CitySpotter to mobilna aplikacja typu **Progressive Web App (PWA)**, umożliwiaj
 - nielegalne wysypiska śmieci
 - uszkodzona infrastruktura, itp...
 
+<p align="center">
+  <img src="CitySpotter_screen.JPG" width="300"/>
+</p>
+
 Aplikacja pozwala użytkownikowi:
 
 - wykonać zdjęcie problemu (kamera urządzenia)
