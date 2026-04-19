@@ -75,7 +75,9 @@ cameraInput.addEventListener('change', (event) => {
     enableShare();
 
     // pobierz GPS
+      setTimeout(() => {
     getLocation();
+  }, 300);
 });
 
 const charCounter = document.getElementById('char-counter');
@@ -106,6 +108,18 @@ function resetCharCounter() {
   charCounter.classList.remove('text-danger');
   charCounter.classList.add('text-muted');
 }
+window.handlePermissionRequest = function () {
+  const modalEl = document.getElementById('locationModal');
+  const modal = bootstrap.Modal.getInstance(modalEl);
+
+  modal?.hide();
+
+  resetLocationState();
+
+  setTimeout(() => {
+    getLocation();
+  }, 300);
+};
 //geolokalizacja
 const locationModal = new bootstrap.Modal(document.getElementById('locationModal'));
 
