@@ -78,11 +78,34 @@ cameraInput.addEventListener('change', (event) => {
     getLocation();
 });
 
+const charCounter = document.getElementById('char-counter');
+const MAX_CHARS = 300;
 reportText.addEventListener('input', (event) => {
-    currentReportText = event.target.value.trim();
-    enableShare();
-});
+  currentReportText = event.target.value.trim();
 
+  const length = event.target.value.length;
+
+  charCounter.textContent = `${length} / ${MAX_CHARS}`;
+
+  if (length > 270) {
+    charCounter.classList.add('text-danger');
+    charCounter.classList.remove('text-muted');
+  } else {
+    charCounter.classList.add('text-muted');
+    charCounter.classList.remove('text-danger');
+  }
+
+  enableShare();
+});
+function resetCharCounter() {
+  const charCounter = document.getElementById('char-counter');
+
+  if (!charCounter) return;
+
+  charCounter.textContent = `0 / 300`;
+  charCounter.classList.remove('text-danger');
+  charCounter.classList.add('text-muted');
+}
 //geolokalizacja
 const locationModal = new bootstrap.Modal(document.getElementById('locationModal'));
 
@@ -266,6 +289,7 @@ function clearCurrentReport() {
     photoPreview.src = '';
     photoPreview.style.display = 'none';
     reportText.value = '';
+    resetCharCounter();
     locationStatus.textContent = 'Oczekiwanie na sygnał GPS';
 
     enableShare();

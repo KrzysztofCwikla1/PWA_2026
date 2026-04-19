@@ -64,8 +64,12 @@
             id="report-text"
             class="form-control"
             rows="3"
-            placeholder="Krótko opisz problem"
+            maxlength="300"
+            placeholder="Krótko opisz problem (max 300 znaków)"
           ></textarea>
+          <div class="d-flex justify-content-between mt-2">
+            <small id="char-counter" class="text-muted">0 / 300</small>
+           </div>
         </div>
       </section>
 
